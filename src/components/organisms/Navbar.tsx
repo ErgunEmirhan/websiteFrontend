@@ -1,4 +1,5 @@
-import { AppBar, Box, Button, Divider, Menu, MenuItem, MenuList, styled, Toolbar, Typography } from '@mui/material'
+import { AppBar, Box, Button, Divider, Menu, MenuItem, MenuList, styled, Toolbar, Typography, useTheme } from '@mui/material'
+import LanguageIcon from '@mui/icons-material/Language';
 import React, { Dispatch, SetStateAction, useContext } from 'react'
 import LightModeIcon from '@mui/icons-material/LightMode';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
@@ -15,6 +16,7 @@ const pages = ['Home', 'About', 'Projects']
 function Navbar() {
     
     const {isDarkMode, setIsDarkMode} = useContext<any>(DarkModeContext)
+    const theme = useTheme();
 
   return (
     <AppBar>
@@ -35,7 +37,10 @@ function Navbar() {
                 </MenuList>
             </Box>
             <Divider orientation='vertical' variant='middle' flexItem/>
-            <Button onClick={() => setIsDarkMode(!isDarkMode)}>{!isDarkMode ? <LightModeIcon sx={{color:'white'}}/> : <DarkModeIcon/>}</Button>
+            
+            <Divider orientation='vertical' variant='middle' flexItem/>
+            <Button><LanguageIcon sx={{color:'white'}}/></Button>
+            <Button onClick={() => setIsDarkMode(!isDarkMode)}>{!isDarkMode ? <LightModeIcon sx={{color:'white'}}/> : <DarkModeIcon sx={{color:'white'}}/>}</Button>
 
         </StyledToolbar>
     </AppBar>
