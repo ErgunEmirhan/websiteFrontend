@@ -1,19 +1,19 @@
-import { Box, Button, createTheme, CssBaseline, ThemeProvider } from '@mui/material';
-import  { useState } from 'react'
+import { Box, createTheme, CssBaseline, ThemeProvider } from '@mui/material';
+import  { useContext } from 'react'
 import { Outlet } from 'react-router-dom';
 import Navbar from './Navbar';
+import { DarkModeContext } from '../../contexts/DarkModeContext';
 
 function Layout() {
-    const [isDarkMode, setIsDarkMode] = useState(false);
-    const theme = createTheme({ palette: { mode: isDarkMode ? 'dark' : 'light' } });
 
-
+  const {isDarkMode, setIsDarkMode} = useContext<any>(DarkModeContext);
+  const theme = createTheme({ palette: { mode: isDarkMode ? 'dark' : 'light' } });
 
   return (
     <ThemeProvider theme={theme}>
         <CssBaseline/>
         <Box>
-            <Navbar isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />
+            <Navbar/>
             <Outlet/>
         </Box>
         </ThemeProvider>
