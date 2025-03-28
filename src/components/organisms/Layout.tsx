@@ -14,6 +14,7 @@ function Layout() {
         <CssBaseline/>
         <Box>
             <Navbar/>
+            
             <Outlet/>
         </Box>
         </ThemeProvider>

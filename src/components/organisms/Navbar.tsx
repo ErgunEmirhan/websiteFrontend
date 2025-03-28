@@ -1,4 +1,4 @@
-import { AppBar, Box, Button, Divider, Menu, MenuItem, styled, Toolbar, Typography } from '@mui/material'
+import { AppBar, Box, Button, Divider, Menu, MenuItem, MenuList, styled, Toolbar, Typography } from '@mui/material'
 import React, { Dispatch, SetStateAction, useContext } from 'react'
 import LightModeIcon from '@mui/icons-material/LightMode';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
@@ -16,39 +16,25 @@ function Navbar() {
     
     const {isDarkMode, setIsDarkMode} = useContext<any>(DarkModeContext)
 
-    const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
-/*
-    const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElNav(event.currentTarget);
-  };
-*/
-    const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-  };
-
- 
-
   return (
     <AppBar>
         <StyledToolbar>
             <Typography variant='h6'>EMIRHAN ERGUN</Typography>
-            <Box>
-                <Menu id='menu-appbar' 
-                anchorEl={anchorElNav} 
-                anchorOrigin={{vertical: 'bottom', horizontal: 'left'}} 
-                keepMounted 
-                transformOrigin={{vertical: 'top', horizontal: 'left'}}
-                open={Boolean(anchorElNav)}
-                onClose={handleCloseNavMenu}
-                sx={{display: {xs: 'block', md: 'none'}}}>
+                <MenuList id='menu-appbar' sx={{display: 'flex', flexDirection: 'row'}}>
                     {pages.map((page) => (
-                    <MenuItem key={page} onClick={handleCloseNavMenu}>
+                    <MenuItem key={page}>
                         <Typography sx={{textAlign: 'center'}} >{page}</Typography>
                     </MenuItem>
                     ))}
-                </Menu>
+                </MenuList>
+            <Box sx={{display: {xs: 'none', md: 'flex'}}}>
+               <MenuList id='media-icons' sx={{display: {xs: 'none', md: 'flex'}}}>
+                    <MenuItem>
+
+                    </MenuItem>
+                </MenuList>
             </Box>
-            <Divider orientation='vertical' flexItem/>
+            <Divider orientation='vertical' variant='middle' flexItem/>
             <Button onClick={() => setIsDarkMode(!isDarkMode)}>{!isDarkMode ? <LightModeIcon sx={{color:'white'}}/> : <DarkModeIcon/>}</Button>
 
         </StyledToolbar>
