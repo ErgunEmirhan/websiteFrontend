@@ -6,16 +6,15 @@ const StyledToolbar = styled(Toolbar)({
     justifyContent: 'space-between'
 })
 
-const pages = ['Home', 'About', 'Projects', 'Contact']
+const pages = ['Home', 'About', 'Projects']
 function Navbar() {
     
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
-    const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
-
+/*
     const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
   };
-
+*/
     const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };

@@ -1,16 +1,18 @@
-import React from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import HomePage from '../pages/HomePage'
 import Layout from '../components/organisms/Layout'
+import AboutPage from '../pages/AboutPage'
+import ProjectsPage from '../pages/ProjectsPage'
 
 function RouterPage() {
   return (
     <BrowserRouter>
     <Routes>
-        <Route path='/' element={<div>about</div>} />
         
         <Route element={<Layout/>}>
-            <Route path= "/home" element={<HomePage/>} />
+            <Route path= "/" element={<HomePage/>} />
+            <Route path='/about' element={<AboutPage/>} />
+            <Route path='/projects' element={<ProjectsPage/>}/>
         </Route>
 
     </Routes>

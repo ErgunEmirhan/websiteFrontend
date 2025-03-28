@@ -1,5 +1,5 @@
-import { Box, createTheme, CssBaseline, ThemeProvider, Typography } from '@mui/material';
-import React, { useState } from 'react'
+import { Box, Button, createTheme, CssBaseline, ThemeProvider } from '@mui/material';
+import  { useState } from 'react'
 import { Outlet } from 'react-router-dom';
 import Navbar from './Navbar';
 
@@ -12,6 +12,7 @@ function Layout() {
         <CssBaseline/>
         <Box>
             <Navbar/>
+            <Button onClick={() => setIsDarkMode(!isDarkMode)}>Toggle Dark Mode</Button>
             <Outlet/>
         </Box>
         </ThemeProvider>
