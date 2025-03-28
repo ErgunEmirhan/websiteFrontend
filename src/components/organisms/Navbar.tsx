@@ -1,5 +1,8 @@
-import { AppBar, Box, Menu, MenuItem, styled, Toolbar, Typography } from '@mui/material'
-import React from 'react'
+import { AppBar, Box, Button, Divider, Menu, MenuItem, styled, Toolbar, Typography } from '@mui/material'
+import React, { Dispatch, SetStateAction, useContext } from 'react'
+import LightModeIcon from '@mui/icons-material/LightMode';
+import DarkModeIcon from '@mui/icons-material/DarkMode';
+import { DarkModeContext } from '../../contexts/DarkModeContext';
 
 const StyledToolbar = styled(Toolbar)({
     display: 'flex',
@@ -7,8 +10,12 @@ const StyledToolbar = styled(Toolbar)({
 })
 
 const pages = ['Home', 'About', 'Projects']
+
+
 function Navbar() {
     
+    const {isDarkMode, setIsDarkMode} = useContext<any>(DarkModeContext)
+
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
 /*
     const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -41,8 +48,9 @@ function Navbar() {
                     ))}
                 </Menu>
             </Box>
-            
-            
+            <Divider orientation='vertical' flexItem/>
+            <Button onClick={() => setIsDarkMode(!isDarkMode)}>{!isDarkMode ? <LightModeIcon sx={{color:'white'}}/> : <DarkModeIcon/>}</Button>
+
         </StyledToolbar>
     </AppBar>
   )

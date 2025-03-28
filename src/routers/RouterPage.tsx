@@ -3,9 +3,13 @@ import HomePage from '../pages/HomePage'
 import Layout from '../components/organisms/Layout'
 import AboutPage from '../pages/AboutPage'
 import ProjectsPage from '../pages/ProjectsPage'
+import { DarkModeContext } from '../contexts/DarkModeContext'
+import { useState } from 'react'
 
 function RouterPage() {
+  const [isDarkMode, setIsDarkMode] = useState<boolean>(false)
   return (
+    <DarkModeContext.Provider value={{isDarkMode: isDarkMode, setIsDarkMode: setIsDarkMode}}>
     <BrowserRouter>
     <Routes>
         
@@ -17,6 +21,7 @@ function RouterPage() {
 
     </Routes>
     </BrowserRouter>
+    </DarkModeContext.Provider>
   )
 }
 
