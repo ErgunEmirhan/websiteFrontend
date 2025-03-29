@@ -43,7 +43,7 @@ function NavbarMenuList() {
     <Box>
     <Button id='menu-button' 
     onClick={handleClick}
-    sx={{color: 'white'}}
+    sx={{color: 'white', fontWeight: 'bold'}}
     endIcon={<KeyboardArrowDownIcon />}
     >
         Menu</Button>
@@ -54,7 +54,7 @@ function NavbarMenuList() {
     onClose={handleClose}
     
     >
-        <MenuList id='menulist-appbar' sx={{display: 'flex', flexDirection: 'row'}}>
+        <MenuList id='menulist-appbar' sx={{display: 'flex', flexDirection: 'column'}}>
             {pages.map((page) => (
             <MenuItem key={page.title} onClick={() => handleClose(page.path)}>
                 <Typography sx={{textAlign: 'center'}} >{page.title}</Typography>

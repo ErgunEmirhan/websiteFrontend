@@ -1,13 +1,11 @@
-import { AppBar, Box, Button, Divider, Menu, MenuItem, MenuList, styled, Toolbar, Typography } from '@mui/material'
+import { AppBar, Box, Button, Divider, styled, Toolbar, Typography } from '@mui/material'
 import LanguageIcon from '@mui/icons-material/Language';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
-import { useContext, useState } from 'react'
+import { useContext } from 'react'
 import LightModeIcon from '@mui/icons-material/LightMode';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { DarkModeContext } from '../../contexts/DarkModeContext';
-import { useNavigate } from 'react-router-dom';
 import NavbarMenuList from '../atoms/NavbarMenuList';
 
 const StyledToolbar = styled(Toolbar)(({ theme }) => ({
@@ -46,17 +44,7 @@ const pages: NavbarMenuItem[] = [{
 
 
 function Navbar() {
-    const navigate = useNavigate();
     const {isDarkMode, setIsDarkMode} = useContext<any>(DarkModeContext)
-
-    const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const open = Boolean(anchorEl);
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
 
   return (
     <AppBar>
