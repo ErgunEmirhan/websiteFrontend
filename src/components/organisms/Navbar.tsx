@@ -19,29 +19,6 @@ const StyledToolbar = styled(Toolbar)(({ theme }) => ({
     },
   }));
 
-interface NavbarMenuItem{
-    title: string,
-    path: string
-}
-
-const pages: NavbarMenuItem[] = [{
-    title: 'Home',
-    path: '/'
-},
-{
-    title: 'About',
-    path: '/about'
-},
-{
-    title: 'Projects',
-    path: '/projects'
-},
-{
-    title: 'Contact',
-    path: '/contact'
-}
-]
-
 
 function Navbar() {
     const {isDarkMode, setIsDarkMode} = useContext<any>(DarkModeContext)
