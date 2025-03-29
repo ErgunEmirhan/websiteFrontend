@@ -8,10 +8,16 @@ import DarkModeIcon from '@mui/icons-material/DarkMode';
 import { DarkModeContext } from '../../contexts/DarkModeContext';
 import { useNavigate } from 'react-router-dom';
 
-const StyledToolbar = styled(Toolbar)({
-    display: 'flex',
-    justifyContent: 'space-between'
-})
+const StyledToolbar = styled(Toolbar)(({ theme }) => ({
+    display: 'flex',  // Default display value
+    justifyContent: 'start',
+    [theme.breakpoints.down('xs')]: {
+      display: 'none', // Hide on small screens
+    },
+    [theme.breakpoints.up('md')]: {
+      display: 'flex', // Show on medium and up screens
+    },
+  }));
 
 interface NavbarMenuItem{
     title: string,
@@ -44,10 +50,10 @@ function Navbar() {
   return (
     <AppBar>
         <StyledToolbar>
+            <Box sx={{flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
             <Box>
-                <Typography variant='h6'>EMIRHAN ERGUN</Typography>
+                <Typography variant='h6'>EMİRHAN ERGÜN</Typography>
             </Box>
-            <Divider orientation='vertical' variant='middle' flexItem/>
            <Box>
                 <MenuList id='menu-appbar' sx={{display: 'flex', flexDirection: 'row'}}>
                     {pages.map((page) => (
@@ -57,23 +63,20 @@ function Navbar() {
                     ))}
                 </MenuList>
            </Box>
-           <Divider orientation='vertical' variant='middle' flexItem/>
-
-            <Box sx={{display: {xs: 'none', md: 'flex'}}}>
-               <MenuList id='media-icons' sx={{display: {xs: 'none', md: 'flex'}}}>
-                    <MenuItem>
-                        <Button onClick={() => window.open('https://www.linkedin.com/in/ergun-emirhan/')}><LinkedInIcon sx={{color:'white'}}/></Button>
-                    </MenuItem>
-                    <MenuItem>
-                        <Button onClick={() => window.open('https://github.com/ErgunEmirhan')}><GitHubIcon sx={{color:'white'}}/></Button>
-                    </MenuItem>
-                </MenuList>
-            </Box>           
+            </Box>
+           
+            <Box sx={{flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'flex-end'}}>
+                <Box>
+                <Button onClick={() => window.open('https://www.linkedin.com/in/ergun-emirhan/')}><LinkedInIcon sx={{color:'white'}}/></Button>
+                <Button onClick={() => window.open('https://github.com/ErgunEmirhan')}><GitHubIcon sx={{color:'white'}}/></Button>
+                </Box>
             <Divider orientation='vertical' variant='middle' flexItem/>
             <Box>
                 <Button><LanguageIcon sx={{color:'white'}}/></Button>
                 <Button onClick={() => setIsDarkMode(!isDarkMode)}>{!isDarkMode ? <LightModeIcon sx={{color:'white'}}/> : <DarkModeIcon sx={{color:'white'}}/>}</Button>
             </Box>
+            </Box>
+           
           
         </StyledToolbar>
     </AppBar>
