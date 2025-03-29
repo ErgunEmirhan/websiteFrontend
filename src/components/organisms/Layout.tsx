@@ -6,7 +6,7 @@ import { DarkModeContext } from '../../contexts/DarkModeContext';
 
 function Layout() {
 
-  const {isDarkMode, setIsDarkMode} = useContext<any>(DarkModeContext);
+  const {isDarkMode} = useContext<any>(DarkModeContext);
   const theme = createTheme({ palette: { mode: isDarkMode ? 'dark' : 'light' } });
 
   return (
@@ -14,6 +14,7 @@ function Layout() {
         <CssBaseline/>
         <Box>
             <Navbar/>
+            
             <Outlet/>
         </Box>
         </ThemeProvider>

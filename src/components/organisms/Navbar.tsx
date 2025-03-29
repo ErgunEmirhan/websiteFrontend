@@ -1,56 +1,74 @@
-import { AppBar, Box, Button, Divider, Menu, MenuItem, styled, Toolbar, Typography } from '@mui/material'
-import React, { Dispatch, SetStateAction, useContext } from 'react'
+import { AppBar, Box, Button, Divider, styled, Toolbar, Typography } from '@mui/material'
+import LanguageIcon from '@mui/icons-material/Language';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import { useContext } from 'react'
 import LightModeIcon from '@mui/icons-material/LightMode';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import { DarkModeContext } from '../../contexts/DarkModeContext';
+import NavbarMenuList from '../atoms/NavbarMenuList';
 
-const StyledToolbar = styled(Toolbar)({
-    display: 'flex',
-    justifyContent: 'space-between'
-})
+const StyledToolbar = styled(Toolbar)(({ theme }) => ({
+    display: 'flex',  // Default display value
+    justifyContent: 'start',
+    [theme.breakpoints.down('xs')]: {
+      display: 'none', // Hide on small screens
+    },
+    [theme.breakpoints.up('md')]: {
+      display: 'flex', // Show on medium and up screens
+    },
+  }));
 
-const pages = ['Home', 'About', 'Projects']
+interface NavbarMenuItem{
+    title: string,
+    path: string
+}
+
+const pages: NavbarMenuItem[] = [{
+    title: 'Home',
+    path: '/'
+},
+{
+    title: 'About',
+    path: '/about'
+},
+{
+    title: 'Projects',
+    path: '/projects'
+},
+{
+    title: 'Contact',
+    path: '/contact'
+}
+]
 
 
 function Navbar() {
-    
     const {isDarkMode, setIsDarkMode} = useContext<any>(DarkModeContext)
-
-    const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
-/*
-    const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElNav(event.currentTarget);
-  };
-*/
-    const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-  };
-
- 
 
   return (
     <AppBar>
         <StyledToolbar>
-            <Typography variant='h6'>EMIRHAN ERGUN</Typography>
+            <Box sx={{flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
             <Box>
-                <Menu id='menu-appbar' 
-                anchorEl={anchorElNav} 
-                anchorOrigin={{vertical: 'bottom', horizontal: 'left'}} 
-                keepMounted 
-                transformOrigin={{vertical: 'top', horizontal: 'left'}}
-                open={Boolean(anchorElNav)}
-                onClose={handleCloseNavMenu}
-                sx={{display: {xs: 'block', md: 'none'}}}>
-                    {pages.map((page) => (
-                    <MenuItem key={page} onClick={handleCloseNavMenu}>
-                        <Typography sx={{textAlign: 'center'}} >{page}</Typography>
-                    </MenuItem>
-                    ))}
-                </Menu>
+                <Typography variant='h6'>EMİRHAN ERGÜN</Typography>
             </Box>
-            <Divider orientation='vertical' flexItem/>
-            <Button onClick={() => setIsDarkMode(!isDarkMode)}>{!isDarkMode ? <LightModeIcon sx={{color:'white'}}/> : <DarkModeIcon/>}</Button>
-
+                <NavbarMenuList/>
+            </Box>
+           
+            <Box sx={{flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'flex-end'}}>
+                <Box>
+                <Button onClick={() => window.open('https://www.linkedin.com/in/ergun-emirhan/')}><LinkedInIcon sx={{color:'white'}}/></Button>
+                <Button onClick={() => window.open('https://github.com/ErgunEmirhan')}><GitHubIcon sx={{color:'white'}}/></Button>
+                </Box>
+            <Divider orientation='vertical' variant='middle' flexItem/>
+            <Box>
+                <Button><LanguageIcon sx={{color:'white'}}/></Button>
+                <Button onClick={() => setIsDarkMode(!isDarkMode)}>{!isDarkMode ? <LightModeIcon sx={{color:'white'}}/> : <DarkModeIcon sx={{color:'white'}}/>}</Button>
+            </Box>
+            </Box>
+           
+          
         </StyledToolbar>
     </AppBar>
   )
