@@ -1,12 +1,14 @@
-import { AppBar, Box, Button, Divider, MenuItem, MenuList, styled, Toolbar, Typography } from '@mui/material'
+import { AppBar, Box, Button, Divider, Menu, MenuItem, MenuList, styled, Toolbar, Typography } from '@mui/material'
 import LanguageIcon from '@mui/icons-material/Language';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import LightModeIcon from '@mui/icons-material/LightMode';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { DarkModeContext } from '../../contexts/DarkModeContext';
 import { useNavigate } from 'react-router-dom';
+import NavbarMenuList from '../atoms/NavbarMenuList';
 
 const StyledToolbar = styled(Toolbar)(({ theme }) => ({
     display: 'flex',  // Default display value
@@ -47,6 +49,15 @@ function Navbar() {
     const navigate = useNavigate();
     const {isDarkMode, setIsDarkMode} = useContext<any>(DarkModeContext)
 
+    const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
   return (
     <AppBar>
         <StyledToolbar>
@@ -54,15 +65,7 @@ function Navbar() {
             <Box>
                 <Typography variant='h6'>EMİRHAN ERGÜN</Typography>
             </Box>
-           <Box>
-                <MenuList id='menu-appbar' sx={{display: 'flex', flexDirection: 'row'}}>
-                    {pages.map((page) => (
-                    <MenuItem key={page.title} onClick={() => navigate(page.path)}>
-                        <Typography sx={{textAlign: 'center'}} >{page.title}</Typography>
-                    </MenuItem>
-                    ))}
-                </MenuList>
-           </Box>
+                <NavbarMenuList/>
             </Box>
            
             <Box sx={{flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'flex-end'}}>
