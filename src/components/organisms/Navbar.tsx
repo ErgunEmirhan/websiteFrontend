@@ -6,17 +6,39 @@ import { useContext } from 'react'
 import LightModeIcon from '@mui/icons-material/LightMode';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import { DarkModeContext } from '../../contexts/DarkModeContext';
+import { useNavigate } from 'react-router-dom';
 
 const StyledToolbar = styled(Toolbar)({
     display: 'flex',
     justifyContent: 'space-between'
 })
 
-const pages = ['Home', 'About', 'Projects']
+interface NavbarMenuItem{
+    title: string,
+    path: string
+}
+
+const pages: NavbarMenuItem[] = [{
+    title: 'Home',
+    path: '/'
+},
+{
+    title: 'About',
+    path: '/about'
+},
+{
+    title: 'Projects',
+    path: '/projects'
+},
+{
+    title: 'Contact',
+    path: '/contact'
+}
+]
 
 
 function Navbar() {
-    
+    const navigate = useNavigate();
     const {isDarkMode, setIsDarkMode} = useContext<any>(DarkModeContext)
 
   return (
@@ -29,8 +51,8 @@ function Navbar() {
            <Box>
                 <MenuList id='menu-appbar' sx={{display: 'flex', flexDirection: 'row'}}>
                     {pages.map((page) => (
-                    <MenuItem key={page}>
-                        <Typography sx={{textAlign: 'center'}} >{page}</Typography>
+                    <MenuItem key={page.title} onClick={() => navigate(page.path)}>
+                        <Typography sx={{textAlign: 'center'}} >{page.title}</Typography>
                     </MenuItem>
                     ))}
                 </MenuList>

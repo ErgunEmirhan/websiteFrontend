@@ -5,6 +5,7 @@ import AboutPage from '../pages/AboutPage'
 import ProjectsPage from '../pages/ProjectsPage'
 import { DarkModeContext } from '../contexts/DarkModeContext'
 import { useState } from 'react'
+import ContactPage from '../pages/ContactPage'
 
 function RouterPage() {
   const [isDarkMode, setIsDarkMode] = useState<boolean>(false)
@@ -17,6 +18,7 @@ function RouterPage() {
             <Route path= "/" element={<HomePage/>} />
             <Route path='/about' element={<AboutPage/>} />
             <Route path='/projects' element={<ProjectsPage/>}/>
+            <Route path='/contact' element={<ContactPage/>}/>
         </Route>
 
     </Routes>
